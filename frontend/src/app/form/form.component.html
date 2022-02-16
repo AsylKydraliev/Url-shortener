@@ -1,12 +1,22 @@
 <h1>Shorten your link!</h1>
 
 <mat-card>
-  <form class="example-form" fxLayout="column" fxLayoutAlign="center center">
+  <form
+    (ngSubmit)="onSend()"
+    class="example-form"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    #form="ngForm"
+  >
     <mat-form-field class="example-full-width" appearance="outline" fxFlexFill>
       <mat-label>URL</mat-label>
-      <input matInput required>
+      <input name="url" matInput required ngModel>
     </mat-form-field>
 
-    <button mat-stroked-button color="warn">Shorten</button>
+    <button
+      mat-raised-button
+      color="warn"
+      [disabled]="form.invalid"
+    >Shorten</button>
   </form>
 </mat-card>
