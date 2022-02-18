@@ -10,8 +10,10 @@
   >
     <mat-form-field class="example-full-width" appearance="outline" fxFlexFill>
       <mat-label>URL</mat-label>
-      <input name="originalUrl" matInput appUrl required ngModel #url>
+      <input name="originalUrl" matInput appUrl required ngModel>
     </mat-form-field>
+
+    <small *ngIf="form.invalid && form.touched">Enter correct URL</small>
 
     <button
       mat-raised-button
