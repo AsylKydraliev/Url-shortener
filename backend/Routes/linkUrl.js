@@ -1,6 +1,5 @@
 const express = require('express');
 const {nanoid} = require("nanoid");
-const config = require('../config');
 const LinkUrl = require("../models/Link");
 
 const router = express.Router();
@@ -8,31 +7,30 @@ const router = express.Router();
 router.post('/', async (req, res, next) => {
     try{
         if(!req.body.originalUrl){
-            res.status(400).send({error: 'Url link is required!'});
+            res.status(400).send({error: 'Url is required'});
         }
 
         const urlObject = {
-            _id: nanoid(),
             shortUrl: nanoid(6),
             originalUrl: req.body.originalUrl,
         }
 
         const link = new LinkUrl(urlObject);
-
         await link.save();
 
-        return res.send({message: 'Created new product', id: link._id});
+        return res.send(link);
     }catch (e){
         next(e);
     }
 });
 
-router.get('/', async (req, res, next) => {
+router.get('/:shortUrl', async (req, res, next) => {
     try{
-        const query = {};
-        const links = await LinkUrl.find(query);
+        const link = await LinkUrl.findOne({shortUrl: req.params.shortUrl});
 
-        return res.send(links);
+        if(link){
+            res.status(301).redirect(link.originalUrl);
+        }
     }catch (e){
         next(e);
     }

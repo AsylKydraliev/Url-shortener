@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { HttpService } from '../shared/http.service';
 
 @Component({
   selector: 'app-form',
@@ -9,12 +10,15 @@ import { NgForm } from '@angular/forms';
 export class FormComponent implements OnInit {
   @ViewChild('form') form!: NgForm;
 
-  constructor() { }
+  constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
   }
 
   onSend() {
-    console.log(this.form.value);
+    const link = this.form.value;
+    this.httpService.onPost(link).subscribe(() => {
+      this.form.resetForm();
+    });
   }
 }

@@ -1,11 +1,13 @@
 const express = require('express');
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+const cors = require('cors');
 const links = require('./Routes/linkUrl');
 const config = require('./config');
 const app = express();
 
 const port = 8000;
 
+app.use(cors({origin: 'http://localhost:4200'}));
 app.use(express.json());
 app.use('/links', links);
 
