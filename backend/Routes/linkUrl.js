@@ -18,7 +18,7 @@ router.post('/', async (req, res, next) => {
         const link = new LinkUrl(urlObject);
         await link.save();
 
-        return res.send(JSON.stringify(link));
+        return res.send(link);
     }catch (e){
         next(e);
     }
@@ -30,6 +30,8 @@ router.get('/:shortUrl', async (req, res, next) => {
 
         if(link){
             res.status(301).redirect(link.originalUrl);
+        }else{
+            res.status(404).send({error: 'This link is not in the database'});
         }
     }catch (e){
         next(e);

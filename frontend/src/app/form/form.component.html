@@ -10,7 +10,7 @@
   >
     <mat-form-field class="example-full-width" appearance="outline" fxFlexFill>
       <mat-label>URL</mat-label>
-      <input name="originalUrl" matInput required ngModel>
+      <input name="originalUrl" matInput appUrl required ngModel #url>
     </mat-form-field>
 
     <button
@@ -25,9 +25,7 @@
   </form>
 </mat-card>
 
-<hr>
-
 <mat-card *ngIf="shortLink" fxLayout="column" fxLayoutAlign="center center">
   <h3>Your link now looks like this:</h3>
-  <a [href]="apiUrl + '/links/' +  shortLink" target="_blank">{{ apiUrl + '/links/' + shortLink }}</a>
+  <a [href]="apiUrl + '/links/' + shortLink" target="_blank">{{ apiUrl + '/' + shortLink }}</a>
 </mat-card>

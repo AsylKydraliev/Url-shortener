@@ -14,7 +14,7 @@ export class FormComponent {
   shortLink!: string;
   apiUrl = environment.apiUrl;
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService) {}
 
   onSend() {
     const link: Link = this.form.value;
@@ -23,8 +23,4 @@ export class FormComponent {
       this.form.resetForm();
     });
   };
-
-  getUrl () {
-    this.httpService.onGet(this.shortLink).subscribe();
-  }
 }

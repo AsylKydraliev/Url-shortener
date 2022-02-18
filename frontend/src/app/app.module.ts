@@ -12,11 +12,13 @@ import { MatInputModule } from '@angular/material/input';
 import { FlexModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { UrlValidatorDirective } from './shared/url-validator.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormComponent,
+    UrlValidatorDirective
   ],
   imports: [
     BrowserModule,

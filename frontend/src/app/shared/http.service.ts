@@ -12,8 +12,4 @@ export class HttpService{
   onPost(shortUrl: Link){
     return this.http.post('http://localhost:8000/links', shortUrl);
   };
-
-  onGet(shortenUrl: string){
-    return this.http.get('http://localhost:8000/links' + shortenUrl);
-  };
 }
