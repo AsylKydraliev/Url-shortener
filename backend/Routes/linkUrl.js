@@ -13,12 +13,12 @@ router.post('/', async (req, res, next) => {
         const urlObject = {
             shortUrl: nanoid(6),
             originalUrl: req.body.originalUrl,
-        }
+        };
 
         const link = new LinkUrl(urlObject);
         await link.save();
 
-        return res.send(link);
+        return res.send(JSON.stringify(link));
     }catch (e){
         next(e);
     }

@@ -24,3 +24,10 @@
     </button>
   </form>
 </mat-card>
+
+<hr>
+
+<mat-card *ngIf="shortLink" fxLayout="column" fxLayoutAlign="center center">
+  <h3>Your link now looks like this:</h3>
+  <a [href]="apiUrl + '/links/' +  shortLink" target="_blank">{{ apiUrl + '/links/' + shortLink }}</a>
+</mat-card>
